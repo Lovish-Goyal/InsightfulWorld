@@ -1,5 +1,3 @@
-Certainly! Here’s a professional `README.md` template for a website where users can share their thoughts. This version focuses on explaining the website's purpose, features, and usage from an end-user perspective rather than providing instructions for developers.
-
 ---
 
 # EcoMind
