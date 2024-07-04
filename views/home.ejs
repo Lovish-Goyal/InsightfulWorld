@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NoteKeeper</title>
+    <!-- Google Fonts for typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/home.css" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="#" class="brand">Eco<span>Mind</span></a>
+        <ul class="nav-menu">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#Thoughts">Thoughts</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="main">
+        <div class="hero-content">
+          <h3>Hey Welcome!</h3>
+          <h1><span>Global</span>Thoughts</h1>
+          <h1>Easy<span>Sharing</span></h1>
+          <p>
+            "Streamline your productivity with our intuitive note-taking
+            solution. Capture ideas seamlessly, organize thoughts effortlessly,
+            and stay productive wherever you go. From brainstorming sessions to
+            daily tasks, our platform ensures your notes are always accessible
+            and neatly organized"
+          </p>
+          <a href="/login" class="btn">Share Your Thoughts</a>
+        </div>
+        <div class="main-image"></div>
+      </div>
+    </section>
+
+    <!-- Thoughts Section  -->
+
+    <section class="Notes" id="Thoughts">
+      <h2>Best Thoughts Across the World</h2>
+      <div class="container">
+        <% data.map(item=> { %>
+        <div class="Note">
+          <div class="Note-content">
+            <form action="">
+              <h3><%= item.title %></h3>
+              <p><%= item.content %></p>
+            </form>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <h2>About Us</h2>
+      <div class="about-content">
+        <p>
+          At NoteKeeper, we are dedicated to transforming the way you capture
+          and organize your thoughts. Our platform was developed to streamline
+          the often chaotic process of note management, providing a seamless and
+          intuitive experience tailored to meet the diverse needs of our users.
+          Whether you are a student navigating through coursework, a
+          professional managing projects, or a creative thinker capturing
+          fleeting inspirations, our tools are designed to enhance your
+          productivity and keep you focused.
+        </p>
+        <p>
+          We understand that every idea has the potential to grow into something
+          impactful. That's why our mission is to empower you with a robust
+          note-taking solution that not only stores your thoughts securely but
+          also facilitates their transformation into actionable plans. With
+          [Your Note-Keeping Website], you can efficiently organize, prioritize,
+          and access your notes from anywhere, ensuring that your ideas are
+          always at your fingertips.
+        </p>
+        <p>
+          Join us in reimagining note-keeping. Our commitment to innovation and
+          user-centric design drives us to continuously evolve, delivering
+          features that adapt to your workflow and enhance your productivity.
+          Together, let's bring your ideas to life and achieve your goals with
+          clarity and efficiency.
+        </p>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+      <h2>Key Features</h2>
+      <div class="container">
+        <div class="feature">
+          <i class="fas fa-sticky-note"></i>
+          <div class="feature-content">
+            <h3>Create Notes</h3>
+            <p>
+              Easily create and manage your notes with a simple and intuitive
+              interface.
+            </p>
+          </div>
+        </div>
+        <div class="feature">
+          <i class="fas fa-tags"></i>
+          <div class="feature-content">
+            <h3>Tagging System</h3>
+            <p>
+              Organize your notes with tags to quickly find and categorize them.
+            </p>
+          </div>
+        </div>
+        <div class="feature">
+          <i class="fas fa-share-alt"></i>
+          <div class="feature-content">
+            <h3>Share with Others</h3>
+            <p>
+              Share your notes with friends and colleagues with just a few
+              clicks.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature">
+          <i class="fas fa-sticky-note"></i>
+          <div class="feature-content">
+            <h3>Organize Effortlessly</h3>
+            <p>
+              Categorize and sort your notes with customizable folders and tags.
+            </p>
+          </div>
+        </div>
+        <div class="feature">
+          <i class="fas fa-tags"></i>
+          <div class="feature-content">
+            <h3>Sync Across Devices</h3>
+            <p>
+              Access your notes anytime, anywhere, with seamless synchronization
+              across all your devices.
+            </p>
+          </div>
+        </div>
+        <div class="feature">
+          <i class="fas fa-share-alt"></i>
+          <div class="feature-content">
+            <h3>Secure and Private</h3>
+            <p>
+              Rest assured that your notes are safe with our advanced security
+              measures.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <p>
+          We'd love to hear from you! Reach out to us with any questions or
+          feedback.
+        </p>
+        <form>
+          <input type="text" placeholder="Your Name" />
+          <input type="email" placeholder="Your Email" />
+          <textarea placeholder="Your Message"></textarea>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2024 NoteKeeper. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+  <script>
+    // Function to generate a random color in hexadecimal format
+    // Function to generate a random dark color in hexadecimal format
+
+    function getRandomDarkColor() {
+      const letters = "0123456789";
+      let color = "#";
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 10)]; // Use only digits 0-9 for darker colors
+      }
+      return color;
+    }
+
+    // Select all feature items
+    const featureItems = document.querySelectorAll(".Note");
+
+    // Convert NodeList to Array and use map to apply random dark colors
+    Array.from(featureItems).map((item) => {
+      const randomColor = getRandomDarkColor();
+      item.style.backgroundColor = randomColor;
+    });
+  </script>
+</html>
