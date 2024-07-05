@@ -54,8 +54,8 @@
         <% data.map(item=> { %>
         <div class="Note">
           <p>"<%= item.content %>"</p>
-          <% if (item.userDetails.username) { %>
-          <h3>Created by: <%= item.userDetails.username %></h3>
+          <% if (item.username) { %>
+          <h3>Created by: <%= item.username %></h3>
           <% } else { %>
           <h3>Created by: Unknown</h3>
           <% } %>

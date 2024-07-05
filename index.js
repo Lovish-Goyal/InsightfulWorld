@@ -33,15 +33,27 @@ app.get("/", async function (req, res) {
     const data = await ThoughtModel.aggregate([
       {
         $lookup: {
-          from: "users",
-          localField: "userId",
-          foreignField: "_id",
-          as: "userDetails",
+          from: "users", // Join with the users collection
+          localField: "userId", // Field in thoughts collection
+          foreignField: "_id", // Field in users collection
+          as: "userDetails", // Output array field
+        },
+      },
+      {
+        $unwind: {
+          path: "$userDetails",
+          preserveNullAndEmptyArrays: true, // Keep documents without a matching user
+        },
+      },
+      {
+        $project: {
+          _id: 1, // Include the thought's _id
+          content: 1, // Include the thought's content
+          username: "$userDetails.username", // Include the user's username or null
         },
       },
     ]);
-
-    console.log({ data });
+    console.log({ data }.userDetails);
     res.render("home.ejs", { data: data });
   } catch (error) {
     console.error("Error fetching data:", error);
