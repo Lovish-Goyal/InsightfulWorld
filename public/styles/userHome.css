@@ -24,6 +24,16 @@ header > a > div:nth-child(1) {
   font-size: 22px;
   color: white;
 }
+
+header > h3 {
+  font-weight: 700;
+  color: whitesmoke;
+}
+
+header > h3 >span {
+  color: rgb(87, 208, 244);
+  margin: 0px 10px;
+}
 header > a > div > span {
   color: rgb(88, 191, 255);
 }
@@ -52,8 +62,9 @@ header > a > div > span {
 .col-1 {
   flex-direction: column;
   padding: 20px;
-  width: 40vw;
+  width: 30vw;
   background-color: rgb(213, 238, 255);
+  height: 100vh;
 }
 
 h2 {
@@ -63,66 +74,63 @@ h2 {
   margin-bottom: 10px;
 }
 h3 {
-  margin: 30px 0;
-  color: rgb(180, 8, 119);
+  margin: 30px 10px;
+  color: rgb(79, 73, 73);
+  font-weight: 700;
   text-align: justify;
 }
 .new-note > form {
   background-color: cadetblue;
-  width: 500px;
+  width: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 50px 0px;
+  margin-top: 50px;
   padding: 10px;
+  border-radius: 10px;
 }
 form > h3 {
   margin: 10px;
+  color: rgb(209, 248, 212);
   display: flex;
   justify-content: center;
-}
-form > input {
-  margin: 10px;
-  height: 20px;
 }
 form > textarea {
   margin: 10px;
 }
 .new-note > form > button {
+  padding: 5px;
   margin: 10px;
   width: 200px;
 }
 .col-2 {
   display: grid;
+  max-height: 85vh;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  padding: 20px;
-  margin: 0;
-  height: 100%;
-  overflow-y: visible;
+  padding: 25px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .col-2 > .item-box {
-  width: 18vw;
+  width: 20vw;
+  height: 230px;
   word-wrap: break-word;
+  border-radius: 10px;
   background-color: rgb(183, 220, 238);
 }
-.col-2 > .item-box > .title-partition {
-  display: flex;
-}
-.col-2 > .item-box > .title-partition > .title {
-  padding: 10px;
-  background-color: rgb(141, 178, 99);
-  display: flex;
-  justify-content: center;
-  width: 80%;
-}
-.col-2 > .item-box > .title-partition > form > button > i {
-  padding: 10px;
+
+.col-2 > .item-box > a {
+  padding: 15px 20px;
   display: flex;
   align-items: center;
-  color: black;
-  justify-content: center;
+  color: rgb(81, 80, 80);
+  justify-content: end;
+  text-decoration: none;
 }
+
 .col-2 > .item-box > .content {
   padding: 10px;
+  font-size: 22px;
+  text-align: center;
 }

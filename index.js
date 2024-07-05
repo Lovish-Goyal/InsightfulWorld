@@ -4,6 +4,7 @@ import session from "express-session";
 import mongoose from "mongoose";
 import UserModel from "./model/userModel.js";
 import NotesModel from "./model/noteModel.js";
+import ThoughtModel from "./model/thoughtModel.js";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -28,16 +29,23 @@ const __dirname = dirname(__filename);
 app.use(express.static(path.join(__dirname, "public"))); // to add any external styleeshet
 
 app.get("/", async function (req, res) {
-  const data = await NotesModel.find({});
-  data.forEach((item) => {
-    if (item.userId) {
-      const user = UserModel.findById(item.userId);
-      const username = user.username;
-      console.log(username);
-      console.log(item.userId);
-    }
-  });
-  res.render("home.ejs", { data: data });
+  try {
+    const data = await ThoughtModel.aggregate([
+      {
+        $lookup: {
+          from: "users",
+          localField: "userId",
+          foreignField: "_id",
+          as: "userDetails",
+        },
+      },
+    ]);
+
+    console.log({ data });
+    res.render("home.ejs", { data: data });
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
 });
 
 app.get("/register", async function (req, res) {
@@ -54,11 +62,11 @@ app.get("/register", async function (req, res) {
 app.post("/register/post", async (req, res) => {
   try {
     const data = await UserModel.create({
-      username: req.body.name,
+      username: req.body.username,
       email: req.body.email,
       password: req.body.password,
     });
-    console.log("success", data);
+    console.log("success:", data);
     res.redirect("/login");
   } catch (error) {
     console.log("error", error);
@@ -67,7 +75,7 @@ app.post("/register/post", async (req, res) => {
 
 app.get("/login", (req, res) => {
   if (req?.session?.targetuser) {
-    res.redirect("/Create_note");
+    res.redirect("/userHome");
     return false;
   }
   res.render("login.ejs", { title: "Login me!" });
@@ -82,7 +90,7 @@ app.post("/login/post", async (req, res) => {
     if (targetUser) {
       console.log(targetUser);
       req.session.targetuser = targetUser;
-      res.redirect("/Create_note");
+      res.redirect("/userHome");
     } else {
       res.send("Email and password do not match.");
     }
@@ -104,12 +112,12 @@ app.post("/login/post", async (req, res) => {
   // });
 });
 
-// app.get("/home", async function (req, res) {
-//   const targetuser = req.session.targetuser;
-//   const userId = targetuser._id;
-//   const data = await NotesModel.find({ userId: userId });
-//   res.render("home.ejs", { data: data });
-// });
+app.get("/userHome", async function (req, res) {
+  const targetuser = req.session.targetuser;
+  const userId = targetuser._id;
+  const data = await ThoughtModel.find({ userId: userId });
+  res.render("userHome.ejs", { data: data, username: targetuser.username });
+});
 
 app.get("/profile", function (req, res) {
   const targetuser = req?.session?.targetuser;
@@ -144,13 +152,6 @@ app.get("/session", function (req, res) {
 
 app.get("/profile_edit", function (req, res) {
   res.render("profile_edit.ejs");
-});
-
-app.get("/Create_note", async function (req, res) {
-  const targetuser = req.session.targetuser;
-  const userId = targetuser._id;
-  const data = await NotesModel.find({ userId: userId });
-  res.render("create_note.ejs", { data: data, username: targetuser.username });
 });
 
 app.post("/profile_edit/post", async function (req, res) {
@@ -190,33 +191,32 @@ app.post("/profile_edit/post", async function (req, res) {
   }
 });
 
-app.post("/home/post", function (req, res) {
+app.post("/userHome/saveThought", function (req, res) {
   const targetuser = req.session.targetuser;
   const userId = targetuser._id;
-  NotesModel.create({
-    title: req.body.title,
+  ThoughtModel.create({
     content: req.body.content,
     userId: userId,
   })
     .then((response) => {
       console.log(response);
-      console.log("Notes Added succesfully");
-      res.redirect("/Create_Note");
+      console.log("Your Thought saved Successfully");
+      res.redirect("/userHome");
     })
     .catch((err) => {
-      console.log("error in saving the notes");
+      console.log("error in saving your thought");
     });
 });
 
-app.post("/home/deleteNote/:id", async function (req, res) {
-  const notesId = String(req.params.id);
-  const NoteDeleted = await NotesModel.findByIdAndDelete(notesId);
-  if (NoteDeleted) {
-    console.log("Note deleted");
+app.get("/userHome/deleteThought/:id", async function (req, res) {
+  const ThoughtId = String(req.params.id);
+  const ThoughtDeleted = await ThoughtModel.findByIdAndDelete(ThoughtId);
+  if (ThoughtDeleted) {
+    console.log("Thought deleted");
   } else {
     console.log("error in deletion");
   }
-  res.redirect("/Create_Note");
+  res.redirect("/userHome");
 });
 
 app.listen(8080, async function () {

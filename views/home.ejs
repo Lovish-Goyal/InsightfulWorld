@@ -53,12 +53,12 @@
       <div class="container">
         <% data.map(item=> { %>
         <div class="Note">
-          <div class="Note-content">
-            <form action="">
-              <h3><%= item.title %></h3>
-              <p><%= item.content %></p>
-            </form>
-          </div>
+          <p>"<%= item.content %>"</p>
+          <% if (item.userDetails.username) { %>
+          <h3>Created by: <%= item.userDetails.username %></h3>
+          <% } else { %>
+          <h3>Created by: Unknown</h3>
+          <% } %>
         </div>
         <% }) %>
       </div>

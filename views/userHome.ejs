@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Jokes</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/styles/userHome.css" />
+  </head>
+  <body>
+    <header>
+      <a href="/"
+        ><div>Eco<span>Mind</span></div>
+      </a>
+      <h3>SHARE <span>YOUR</span> THOUGHTS <span>GLOBALLY</span></h3>
+      <div class="Navbar-items"></div>
+      <a class="detail-value" href="/profile">
+        <div class="profile-pic"></div>
+      </a>
+    </header>
+    <div class="body-entry">
+      <div class="col-1">
+        <h2>Hey, <%= username %>👋</h2>
+        <h1>Welcome to the EcoMind</h1>
+        <h3>
+          Join a vibrant community dedicated to exploring innovative solutions
+          for a sustainable tomorrow. EcoMind is where your thoughts can spark
+          change and inspire others.
+        </h3>
+        <div class="new-note">
+          <form method="post" action="/userHome/saveThought">
+            <h3>Share Your Thought</h3>
+            <textarea
+              name="content"
+              id="textarea"
+              placeholder="Enter Your Thoughts (Max 200 Words)"
+              rows="7"
+              maxlength="200"
+              required
+            ></textarea>
+            <button type="submit">Add your thought</button>
+          </form>
+        </div>
+      </div>
+      <div class="col-2">
+        <% data.map(item=> { %>
+        <div class="item-box">
+          <a href="/userHome/deleteThought/<%= item.id%>"
+            ><i class="fas fa-trash-alt"></i
+          ></a>
+          <div class="content">"<%= item.content %>"</div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </body>
+  <script>
+    // Function to generate a random color in hexadecimal format
+    // Function to generate a random dark color in hexadecimal format
+
+    function getRandomLightColor() {
+      // Generate random RGB values between 150 and 255 to ensure light colors
+      const r = Math.floor(150 + Math.random() * 105); // Random value between 150 and 255
+      const g = Math.floor(150 + Math.random() * 105);
+      const b = Math.floor(150 + Math.random() * 105);
+
+      // Convert RGB to hex and return the color string
+      return `#${r.toString(16).padStart(2, "0")}${g
+        .toString(16)
+        .padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
+    }
+
+    // Select all feature items
+    const featureItems = document.querySelectorAll(".item-box");
+
+    // Apply random light, visible colors to each item
+    featureItems.forEach((item) => {
+      const randomColor = getRandomLightColor();
+      item.style.backgroundColor = randomColor;
+    });
+
+    // for dark colors
+    // Function to generate a random color in hexadecimal format
+    // Function to generate a random dark color in hexadecimal format
+  </script>
+</html>
