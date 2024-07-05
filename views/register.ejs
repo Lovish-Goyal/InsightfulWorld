@@ -7,24 +7,115 @@
     <style>
       body {
         font-family: Arial, sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #8a2be2, #ff69b4, #1e90ff);
+        margin: 0;
+        overflow: hidden;
         height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 0;
       }
-      .register-container {
+      .container {
+        background-color: white;
+        display: flex;
+        border-radius: 20px;
+      }
+      .image-container {
+        background: url("https://img.freepik.com/free-vector/liquid-style-background_23-2148476933.jpg")
+          no-repeat;
+        background-size: auto 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 600px;
+        width: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .image-contents {
+        text-align: center;
+        color: white;
+        position: relative;
+        left: -100%; /* Start off-screen to the left */
+        opacity: 0; /* Initially invisible */
+        animation: slideInFromLeft 0.5s forwards, fadeIn 1s forwards; /* Combine slide and fade animations */
+      }
+
+      @keyframes slideInFromLeft {
+        0% {
+          left: -100%; /* Start off-screen to the left */
+        }
+        100% {
+          left: 0; /* Slide in to the left */
+        }
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0; /* Start invisible */
+        }
+        100% {
+          opacity: 1; /* Fade in to visible */
+        }
+      }
+      .image-container > .image-contents > h3 {
+        font-size: 20px;
+        margin: 10;
+      }
+      .image-container > .image-contents > h1 {
+        margin: 10;
+        margin-top: 0;
+        font-size: 35px;
+      }
+      .image-container > .image-contents > h1 > span {
+        color: #007fc4;
+      }
+      .image-container > .image-contents > p {
+        margin: 0px 50px;
+        text-align: justify;
+        line-height: 1.5;
+      }
+      .login-container {
+        width: 25vw;
+        padding: 50px;
         background-color: rgba(255, 255, 255, 0.9);
-        padding: 40px;
         border-radius: 10px;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        width: 300px;
+        position: relative;
+        right: -100%;
+        opacity: 0;
+        animation: slideInFromRight 0.5s forwards, fadeIn 1s forwards;
       }
-      h2 {
+
+      @keyframes slideInFromRight {
+        0% {
+          right: -100%;
+        }
+        100% {
+          right: 0;
+        }
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      .login-container > h2 {
+        font-size: 45px;
+        color: #007fc4;
         text-align: center;
-        color: #333;
-        margin-bottom: 30px;
+        margin-bottom: 50px;
+      }
+      .login-container > h3 {
+        color: rgb(88, 86, 86);
+        font-size: 18px;
+        margin: 20px;
+        margin-left: 0;
       }
       input {
         width: 100%;
@@ -47,32 +138,64 @@
       button:hover {
         background-color: #764ba2;
       }
-      .login-link {
-        text-align: center;
-        margin-top: 15px;
+      h5 {
+        display: flex;
+        justify-content: end;
       }
-      .login-link a {
+      h5 > a {
+        text-decoration: none;
         color: #667eea;
         text-decoration: none;
+        font-size: 15px;
+      }
+      .login-link {
+        text-align: center;
+        margin-top: 20px;
+      }
+      .login-link > a {
+        text-decoration: none;
+        color: #667eea;
+        font-size: 20px;
       }
     </style>
   </head>
   <body>
-    <div class="register-container">
-      <h2>Register</h2>
-      <form method="post" action="/register/post">
-        <input type="text" placeholder="Full Name" name="username" required />
-        <input type="email" placeholder="Email" name="email" required />
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          required
-        />
-        <button type="submit">Register</button>
-      </form>
-      <div class="login-link">
-        <a href="/login">Already have an account? Login</a>
+    <div class="container">
+      <div class="image-container">
+        <div class="image-contents">
+          <h3>Nice to meet you</h3>
+          <h1>Welcome to Eco<span>Mind</span></h1>
+          <p>
+            Discover EcoMind, where your voice finds its community. Whether
+            you're here to explore, inspire, or connect with kindred spirits,
+            this platform is your canvas for expression. Share your stories,
+            ideas, and reflections in a space crafted for genuine interaction
+            and meaningful exchanges. Let your thoughts shape narratives, ignite
+            conversations, and cultivate empathy. Embark on a journey of
+            exploration, where each perspective enriches our collective tapestry
+            of ideas. Embrace the impact of sharing, because here, every voice
+            makes a difference.
+          </p>
+        </div>
+      </div>
+      <div class="login-container">
+        <h2>Register Here!</h2>
+        <h3>Enter your Details:-</h3>
+
+        <form method="post" action="/register/post">
+          <input type="text" placeholder="Full Name" name="username" required />
+          <input type="email" placeholder="Email" name="email" required />
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            required
+          />
+          <button type="submit">Register</button>
+        </form>
+        <div class="login-link">
+          <a href="/login">Already have an account? Login</a>
+        </div>
       </div>
     </div>
   </body>

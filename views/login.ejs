@@ -7,24 +7,113 @@
     <style>
       body {
         font-family: Arial, sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #8a2be2, #ff69b4, #1e90ff);
+        margin: 0;
+        overflow: hidden;
         height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 0;
+      }
+      .container {
+        background-color: white;
+        display: flex;
+        border-radius: 20px;
+      }
+      .image-container {
+        background: url("https://img.freepik.com/free-vector/liquid-style-background_23-2148476933.jpg")
+          no-repeat;
+        background-size: auto 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 600px;
+        width: 600px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .image-contents {
+        text-align: center;
+        color: white;
+        position: relative;
+        left: -100%; /* Start off-screen to the left */
+        opacity: 0; /* Initially invisible */
+        animation: slideInFromLeft 0.5s forwards, fadeIn 1s forwards; /* Combine slide and fade animations */
+      }
+
+      @keyframes slideInFromLeft {
+        0% {
+          left: -100%; /* Start off-screen to the left */
+        }
+        100% {
+          left: 0; /* Slide in to the left */
+        }
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0; /* Start invisible */
+        }
+        100% {
+          opacity: 1; /* Fade in to visible */
+        }
+      }
+      .image-container > .image-contents > h3 {
+        font-size: 20px;
+        margin: 10;
+      }
+      .image-container > .image-contents > h1 {
+        margin: 10;
+        margin-top: 0;
+        font-size: 35px;
+      }
+      .image-container > .image-contents > h1 > span {
+        color: #007fc4;
+      }
+      .image-container > .image-contents > p {
+        margin: 0px 50px;
+        text-align: justify;
+        line-height: 1.5;
       }
       .login-container {
-        background-color: rgba(255, 255, 255, 0.9);
-        padding: 40px;
+        padding: 50px;
         border-radius: 10px;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        width: 300px;
+        position: relative;
+        right: -100%;
+        opacity: 0;
+        animation: slideInFromRight 0.5s forwards, fadeIn 1s forwards;
       }
-      h2 {
+
+      @keyframes slideInFromRight {
+        0% {
+          right: -100%;
+        }
+        100% {
+          right: 0;
+        }
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      .login-container > h2 {
+        font-size: 45px;
+        color: #007fc4;
         text-align: center;
-        color: #333;
-        margin-bottom: 30px;
+        margin-bottom: 50px;
+      }
+      .login-container > h3 {
+        color: rgb(88, 86, 86);
+        font-size: 18px;
+        margin: 20px;
+        margin-left: 0;
       }
       input {
         width: 100%;
@@ -52,6 +141,7 @@
         justify-content: end;
       }
       h5 > a {
+        text-decoration: none;
         color: #667eea;
         text-decoration: none;
         font-size: 15px;
@@ -67,30 +157,48 @@
     </style>
   </head>
   <body>
-    <div class="login-container">
-      <h2>Login</h2>
-      <form method="post" action="/login/post">
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value="Arpit@gmail.com"
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value="ar"
-          required
-        />
-        <h5>
-          <a href="#">forgot-password?</a>
-        </h5>
-        <button type="submit">Log In</button>
-      </form>
-      <div class="forgot-password">
-        <a href="/register">Don't have an account? Sign Up</a>
+    <div class="container">
+      <div class="image-container">
+        <div class="image-contents">
+          <h3>Nice to see you Again</h3>
+          <h1>Welcome to Eco<span>Mind</span></h1>
+          <p>
+            where every thought finds its voice. Whether you're here to reflect,
+            inspire, or connect with like-minded individuals, this platform is
+            your canvas. Share your experiences, ideas, and musings in a space
+            designed for genuine expression and meaningful conversations. Let
+            your thoughts shape narratives, spark discussions, and foster
+            understanding. Join us on a journey of discovery, where every
+            perspective adds richness to our collective tapestry of thoughts.
+            Embrace the power of sharing, because here, your voice matters.
+          </p>
+        </div>
+      </div>
+      <div class="login-container">
+        <h2>Login Here!</h2>
+        <h3>Enter your Login Details:-</h3>
+        <form method="post" action="/login/post">
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value="Arpit@gmail.com"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value="Arpit"
+            required
+          />
+          <h5><a href="#">Forgot password?</a></h5>
+
+          <button type="submit">Log In</button>
+        </form>
+        <div class="forgot-password">
+          <a href="/register">Don't have an account? Sign Up</a>
+        </div>
       </div>
     </div>
   </body>
