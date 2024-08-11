@@ -58,32 +58,21 @@
     </div>
   </body>
   <script>
-    // Function to generate a random color in hexadecimal format
-    // Function to generate a random dark color in hexadecimal format
-
     function getRandomLightColor() {
-      // Generate random RGB values between 150 and 255 to ensure light colors
-      const r = Math.floor(150 + Math.random() * 105); // Random value between 150 and 255
+      const r = Math.floor(150 + Math.random() * 105);
       const g = Math.floor(150 + Math.random() * 105);
       const b = Math.floor(150 + Math.random() * 105);
 
-      // Convert RGB to hex and return the color string
       return `#${r.toString(16).padStart(2, "0")}${g
         .toString(16)
         .padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
     }
 
-    // Select all feature items
     const featureItems = document.querySelectorAll(".item-box");
 
-    // Apply random light, visible colors to each item
     featureItems.forEach((item) => {
       const randomColor = getRandomLightColor();
       item.style.backgroundColor = randomColor;
     });
-
-    // for dark colors
-    // Function to generate a random color in hexadecimal format
-    // Function to generate a random dark color in hexadecimal format
   </script>
 </html>
