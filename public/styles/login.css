@@ -1,171 +1,211 @@
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #8a2be2, #ff69b4, #1e90ff);
-    margin: 0;
-    overflow: hidden;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #8a2be2, #ff69b4, #1e90ff);
+  margin: 0;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background-color: white;
+  display: flex;
+  border-radius: 20px;
+  overflow: hidden; /* Ensure that no content overflows */
+}
+
+.image-container {
+  background: url("https://img.freepik.com/free-vector/liquid-style-background_23-2148476933.jpg")
+    no-repeat;
+  background-size: cover; /* Adjusted to cover the whole area */
+  background-position: center;
+  height: 600px;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.image-contents {
+  text-align: center;
+  color: white;
+  position: relative;
+  left: -100%; /* Start off-screen to the left */
+  opacity: 0; /* Initially invisible */
+  animation: slideInFromLeft 0.5s forwards, fadeIn 1s forwards; /* Combined slide and fade animations */
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    left: -100%;
   }
-  .container {
-    background-color: white;
-    display: flex;
-    border-radius: 20px;
+  100% {
+    left: 0;
   }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.image-container > .image-contents > h3 {
+  font-size: 20px;
+  margin: 10px;
+}
+
+.image-container > .image-contents > h1 {
+  margin: 10px;
+  margin-top: 0;
+  font-size: 35px;
+}
+
+.image-container > .image-contents > h1 > span {
+  color: #007fc4;
+}
+
+.image-container > .image-contents > p {
+  margin: 0 50px;
+  text-align: justify;
+  line-height: 1.5;
+}
+
+.login-container {
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  right: -100%;
+  opacity: 0;
+  animation: slideInFromRight 0.5s forwards, fadeIn 1s forwards;
+}
+
+@keyframes slideInFromRight {
+  0% {
+    right: -100%;
+  }
+  100% {
+    right: 0;
+  }
+}
+
+.login-container > h2 {
+  font-size: 45px;
+  color: #007fc4;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.login-container > h3 {
+  color: rgb(88, 86, 86);
+  font-size: 18px;
+  margin: 20px;
+  margin-left: 0;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #764ba2;
+}
+
+h5 {
+  display: flex;
+  justify-content: end;
+}
+
+h5 > a {
+  text-decoration: none;
+  color: #667eea;
+  font-size: 15px;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login-link a {
+  text-decoration: none;
+  color: #667eea;
+  font-size: 16px;
+}
+
+/* Notification Styles */
+.notification {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.notification.error {
+  color: #d9534f;
+  background-color: #f2dede;
+  border: 1px solid #d9534f;
+}
+
+.notification.success {
+  color: #5bc0de;
+  background-color: #d9edf7;
+  border: 1px solid #5bc0de;
+}
+
+@media screen and (max-width: 1150px) {
   .image-container {
-    background: url("https://img.freepik.com/free-vector/liquid-style-background_23-2148476933.jpg")
-      no-repeat;
-    background-size: auto 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 600px;
-    width: 600px;
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    padding: 30px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .image-contents {
-    text-align: center;
-    color: white;
-    position: relative;
-    left: -100%; /* Start off-screen to the left */
-    opacity: 0; /* Initially invisible */
-    animation: slideInFromLeft 0.5s forwards, fadeIn 1s forwards; /* Combine slide and fade animations */
+    align-items: start;
+    margin-top: 10vh;
   }
 
-  @keyframes slideInFromLeft {
-    0% {
-      left: -100%; /* Start off-screen to the left */
-    }
-    100% {
-      left: 0; /* Slide in to the left */
-    }
+  .login-container {
+    padding: 30px;
   }
 
-  @keyframes fadeIn {
-    0% {
-      opacity: 0; /* Start invisible */
-    }
-    100% {
-      opacity: 1; /* Fade in to visible */
-    }
-  }
-  .image-container > .image-contents > h3 {
-    font-size: 20px;
-    margin: 10;
-  }
-  .image-container > .image-contents > h1 {
-    margin: 10;
-    margin-top: 0;
+  .login-container > h2 {
     font-size: 35px;
   }
-  .image-container > .image-contents > h1 > span {
-    color: #007fc4;
-  }
-  .image-container > .image-contents > p {
-    margin: 0px 50px;
-    text-align: justify;
-    line-height: 1.5;
-  }
-  .login-container {
-    padding: 50px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    position: relative;
-    right: -100%;
-    opacity: 0;
-    animation: slideInFromRight 0.5s forwards, fadeIn 1s forwards;
-  }
 
-  @keyframes slideInFromRight {
-    0% {
-      right: -100%;
-    }
-    100% {
-      right: 0;
-    }
-  }
-
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  .login-container > h2 {
-    font-size: 45px;
-    color: #007fc4;
-    text-align: center;
-    margin-bottom: 50px;
-  }
-  .login-container > h3 {
-    color: rgb(88, 86, 86);
-    font-size: 18px;
-    margin: 20px;
-    margin-left: 0;
-  }
   input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
+    padding: 8px;
   }
+
   button {
-    width: 100%;
-    padding: 10px;
-    background-color: #667eea;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    padding: 8px;
   }
-  button:hover {
-    background-color: #764ba2;
-  }
-  h5 {
-    display: flex;
-    justify-content: end;
-  }
-  h5 > a {
-    text-decoration: none;
-    color: #667eea;
-    text-decoration: none;
-    font-size: 15px;
-  }
-  .login-link {
-    text-align: center;
-    margin-top: 20px;
-  }
-  .login-link a {
-    text-decoration: none;
-    color: #667eea;
-    font-size: 16px;
-  }
-
-  @media screen and (max-width: 1150px) {
-    .image-container{
-        display: none;
-    }
-  }
-
-  @media screen and (max-width: 600px) {
-    body{
-        padding: 30px;
-        display: flex;
-        align-items: start;
-        margin-top: 10vh;
-    }
-    .login-container{
-        padding: 30px;
-    }
-    .login-container > h2 {
-        font-size: 35px;
-      }
-  }
+}

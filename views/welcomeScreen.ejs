@@ -24,15 +24,28 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
+      <div class="dropdown">
+        <div class="menu-icon" onclick="toggleMenu(this)">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </div>
+        <div class="dropdown-content">
+          <a href="#hero">Home</a>
+          <a href="#Thoughts">Thoughts</a>
+          <a href="#about">About</a>
+          <a href="#features">Features</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
       <div class="main">
         <div class="hero-content">
-          <h3>Hey Welcome!</h3>
-          <h1><span>Global</span>Thoughts</h1>
-          <h1>Easy<span>Sharing</span></h1>
+          <h2>Hey Welcome!</h2>
+          <h1><span>Global </span>Thoughts <span>Easy </span>Sharing</h1>
           <p>
             "Welcome to our global thought-sharing platform, where your ideas
             and insights reach an expansive audience with ease. Our intuitive
@@ -170,18 +183,18 @@
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
+      <h2>Contact Us</h2>
       <div class="container">
-        <h2>Contact Us</h2>
-        <p>
-          We'd love to hear from you! Reach out to us with any questions or
-          feedback.
-        </p>
-        <form>
-          <input type="text" placeholder="Your Name" />
-          <input type="email" placeholder="Your Email" />
-          <textarea placeholder="Your Message"></textarea>
-          <button type="submit" class="btn">Send Message</button>
-        </form>
+        <div class="container1">
+          <form method="post" action="/contact/post">
+            <h1>Enter your Details:</h1>
+            <input type="text" placeholder="Your Name" name="username" />
+            <input type="email" placeholder="Your Email" name="email" />
+            <textarea placeholder="Your Message" name="message"></textarea>
+            <button type="submit" class="btn">Send Message</button>
+          </form>
+        </div>
+        <div class="container2"></div>
       </div>
     </section>
 
@@ -193,6 +206,27 @@
     </footer>
   </body>
   <script>
+    function toggleMenu(icon) {
+      icon.classList.toggle("change");
+      document.querySelector(".dropdown-content").classList.toggle("show");
+    }
+
+    window.onclick = function (event) {
+      if (
+        !event.target.matches(".menu-icon") &&
+        !event.target.matches(".menu-icon div")
+      ) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains("show")) {
+            openDropdown.classList.remove("show");
+            document.querySelector(".menu-icon").classList.remove("change");
+          }
+        }
+      }
+    };
+
     // Function to generate a random color in hexadecimal format
     // Function to generate a random dark color in hexadecimal format
 
@@ -205,7 +239,6 @@
       return color;
     }
 
-    // Select all feature items
     const featureItems = document.querySelectorAll(".Note");
 
     // Convert NodeList to Array and use map to apply random dark colors
@@ -213,5 +246,25 @@
       const randomColor = getRandomDarkColor();
       item.style.backgroundColor = randomColor;
     });
+
+    // Check the Contact fields are empty or not ?
+    document
+      .getElementById("contact")
+      .addEventListener("submit", function (event) {
+        const username = document
+          .querySelector('input[name="username"]')
+          .value.trim();
+        const email = document
+          .querySelector('input[name="email"]')
+          .value.trim();
+        const message = document
+          .querySelector('textarea[name="message"]')
+          .value.trim();
+
+        if (!username || !email || !message) {
+          alert("All fields are required.");
+          event.preventDefault(); // Prevent the form from submitting
+        }
+      });
   </script>
 </html>

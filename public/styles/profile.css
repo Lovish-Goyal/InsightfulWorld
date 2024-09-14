@@ -1,0 +1,229 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  background-color: rgb(63, 125, 202);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 50px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+nav > a {
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+}
+
+nav > .profile {
+  display: flex;
+  align-items: center;
+}
+
+nav > .profile > .profile-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  background: url("https://fastly.picsum.photos/id/1/200/300.jpg?hmac=jH5bDkLr6Tgy3oAg5khKCHeunZMHq0ehBZr6vGifPLY");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  margin-left: 10px;
+}
+
+.user-section {
+  background-color: rgb(35, 43, 71);
+  color: white;
+  padding: 50px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.user-section > .profile-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-section > .profile-image > img {
+  height: 200px;
+  width: 200px;
+  border-radius: 100%;
+}
+
+.user-section > .user-details h1 {
+  font-size: 25px;
+  color: rgb(133, 149, 161);
+  margin: 10px 0;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.user-section > .user-details > .user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-section > .user-details p {
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.user-section > .user-details > .user-info strong {
+  color: rgb(102, 187, 224);
+}
+
+.user-section > .user-details > .user-about {
+  margin: 20px 0;
+  text-align: justify;
+}
+
+.user-section > .user-details > .user-about > p {
+  margin: 20px 0;
+  margin-bottom: 60px;
+}
+
+.user-section > .user-details > .user-about > p > span {
+  color: rgb(102, 187, 224);
+  font-size: 16px;
+}
+
+.user-thoughts {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.user-thoughts > .item-box {
+  width: 1/5;
+  height: 200px;
+  border-radius: 5px;
+}
+
+.user-thoughts > .item-box > a {
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  color: rgb(81, 80, 80);
+  justify-content: end;
+  text-decoration: none;
+}
+
+.user-thoughts > .item-box > .content {
+  padding: 10px;
+  font-size: 22px;
+  text-align: center;
+  color: rgb(41, 39, 36);
+}
+
+/* handle the css for editing buttons */
+
+.email-container {
+  margin: 20px;
+  font-size: 18px;
+}
+
+.edit-button {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.edit-mode {
+  display: none;
+}
+
+.edit-mode input {
+  font-size: 18px;
+}
+
+/* common css  */
+.mg-10 {
+  margin: 10px 0;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+span {
+  color: rgb(87, 208, 244);
+}
+
+.submit-button {
+  padding: 10px 20px;
+  color: white;
+  background-color: rgb(63, 125, 202);
+  font-weight: bold;
+  display: inline;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 20px 0;
+}
+
+.profile_button {
+  padding: 10px 20px;
+  color: white;
+  background-color: rgb(63, 125, 202);
+  font-weight: bold;
+  display: inline;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.thoughts-heading {
+  margin: 40px 30px;
+  font-size: 40px;
+  color: grey;
+  font-weight: bold;
+  font-family: "Arial", Arial, Helvetica, sans-serif;
+}
+
+/* Footer */
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 15px 0;
+}
+
+footer p {
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 1100px) {
+  .user-section {
+    display: block;
+  }
+  .user-thoughts {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .nav_text {
+    display: none;
+  }
+  .user-section > .user-details > .user-info {
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+  }
+  .user-thoughts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .user-thoughts {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

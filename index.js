@@ -31,7 +31,7 @@ app.use("/", mainrouter);
 app.listen(8080, async function () {
   try {
     await mongoose
-      .connect("mongodb://127.0.0.1:27017/react-learning")
+      .connect("mongodb://127.0.0.1:27017/Insightful-World")
       .then((respose) => {
         console.log("App is working on 8080");
       });

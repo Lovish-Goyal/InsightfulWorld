@@ -3,117 +3,144 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EcoMind</title>
-    <style>
-      body {
-        font-family: "Arial", sans-serif;
-        background-color: #f0f2f5;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-      }
-      .profile-container {
-        background-color: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        width: 350px;
-      }
-      .cover-photo {
-        height: 120px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      }
-      .profile-picture {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        border: 5px solid #ffffff;
-        margin: -60px auto 0;
-        display: block;
-      }
-      .profile-info {
-        padding: 20px;
-        text-align: center;
-      }
-      h1 {
-        margin: 10px 0;
-        color: #333;
-      }
-      .username {
-        color: #666;
-        font-size: 0.9em;
-        margin-bottom: 20px;
-      }
-      .bio {
-        color: #333;
-        margin-bottom: 20px;
-        line-height: 1.5;
-      }
-      .details {
-        display: flex;
-        justify-content: space-around;
-        border-top: 1px solid #eee;
-        padding-top: 20px;
-      }
-      .detail-item {
-        text-align: center;
-      }
-      .detail-label {
-        font-size: 0.8em;
-        color: #666;
-      }
-      .detail-value {
-        font-size: 0.8em;
-        font-weight: bold;
-        color: rgb(70, 70, 156);
-        cursor: pointer;
-        text-decoration: none;
-      }
-      .Edit {
-        display: flex;
-        justify-content: end;
-        padding: 20px;
-      }
-      .Edit > a {
-        text-decoration: none;
-        color: white;
-        font-weight: bold;
-      }
-    </style>
+    <link rel="stylesheet" href="/styles/profile.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <title>Profile Page</title>
   </head>
   <body>
-    <div class="profile-container">
-      <div class="cover-photo">
-        <div class="Edit"><a href="/profile_edit">Edit</a></div>
+    <nav>
+      <a href="/">Insightful&nbsp;<span>World</span></a>
+      <div class="nav_text mid_text">
+        SHARE&nbsp;&nbsp;<span>YOUR</span>&nbsp;&nbsp;THOUGHTS<span
+          >&nbsp;&nbsp;GLOBALLY</span
+        >
       </div>
-      <img
-        src="https://via.placeholder.com/120"
-        alt="Profile Picture"
-        class="profile-picture"
-      />
-      <div class="profile-info">
-        <h1><%= username %></h1>
-        <p class="username"><%= email %></p>
-        <p class="bio">
-          Passionate web developer and coffee enthusiast. Always learning and
-          creating.
-        </p>
-        <div class="details">
-          <div class="detail-item">
-            <div class="detail-label"></div>
-            <a class="detail-value" href="/session">logout</a>
+      <a class="profile" href="/profile">
+        <div><%= username %></div>
+        <div class="profile-pic"></div>
+      </a>
+    </nav>
+
+    <main>
+      <section class="user-section">
+        <div class="profile-image">
+          <img
+            src="<%= user_image || 'https://via.placeholder.com/120' %>"
+            alt="Profile Picture"
+          />
+          <div class="submit-button">Change Image</div>
+        </div>
+        <div class="user-details">
+          <h1>Personal Information:-</h1>
+          <div class="user-info">
+            <p>
+              <strong>UserName: </strong
+              ><span id="username-text"><%= username %></span>
+            </p>
+            <p>
+              <strong>Email: </strong><span id="email-text"><%= email %></span>
+            </p>
+            <p>
+              <strong>Mobile: </strong
+              ><span id="mobile-text"><%= mobile || "Not Available" %></span>
+            </p>
           </div>
-          <div class="detail-item">
-            <div class="detail-label"></div>
-            <a class="detail-value" href="/profile/delete/<%= id%>"
-              >Delete Account</a
-            >
+          <div class="user-about">
+            <h1>About:-</h1>
+            <p id="about-text"><%= about %></p>
+          </div>
+          <div class="profile_button" id="edit-profile-button">
+            Edit Profile
+          </div>
+          <div class="profile_button hidden" id="save-profile-button">
+            Save Profile
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      <div class="thoughts-heading">Your Thoughts</div>
+
+      <section class="user-thoughts">
+        <% data.forEach(item => { %>
+        <div class="item-box">
+          <a href="/userHome/deleteThought/<%= item.id %>">
+            <i class="fas fa-trash-alt"></i>
+          </a>
+          <blockquote class="content">"<%= item.content %>"</blockquote>
+        </div>
+        <% }) %>
+      </section>
+      <footer>
+        <div class="container">
+          <p>&copy; 2024 InsightfulWorld. All rights reserved.</p>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      function getRandomLightColor() {
+        const r = Math.floor(150 + Math.random() * 105);
+        const g = Math.floor(150 + Math.random() * 105);
+        const b = Math.floor(150 + Math.random() * 105);
+
+        return `#${r.toString(16).padStart(2, "0")}${g
+          .toString(16)
+          .padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
+      }
+
+      document.querySelectorAll(".item-box").forEach((item) => {
+        item.style.backgroundColor = getRandomLightColor();
+      });
+
+      const editButton = document.getElementById("edit-profile-button");
+      const saveButton = document.getElementById("save-profile-button");
+
+      editButton.addEventListener("click", function () {
+        const usernameText = document.getElementById("username-text");
+        const mobileText = document.getElementById("mobile-text");
+        const aboutText = document.getElementById("about-text");
+
+        usernameText.innerHTML = `<input type="text" id="username-input" value="${usernameText.innerText}">`;
+        mobileText.innerHTML = `<input type="text" id="mobile-input" value="${
+          mobileText.innerText === "Not Available" ? "" : mobileText.innerText
+        }">`;
+        aboutText.innerHTML = `<textarea id="about-input">${aboutText.innerText}</textarea>`;
+
+        editButton.classList.add("hidden");
+        saveButton.classList.remove("hidden");
+      });
+
+      saveButton.addEventListener("click", function () {
+        const newUsername = document.getElementById("username-input").value;
+        const newMobile = document.getElementById("mobile-input").value;
+        const newAbout = document.getElementById("about-input").value;
+
+        // Send updated values to server (uncomment and adjust endpoint as needed)
+        // fetch("/updateProfile", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify({ username: newUsername, mobile: newMobile, about: newAbout }),
+        // }).then((response) => {
+        //   if (response.ok) {
+        //     // Handle success
+        //   } else {
+        //     // Handle error
+        //   }
+        // });
+
+        document.getElementById("username-text").innerText = newUsername;
+        document.getElementById("mobile-text").innerText =
+          newMobile || "Not Available";
+        document.getElementById("about-text").innerText = newAbout;
+
+        saveButton.classList.add("hidden");
+        editButton.classList.remove("hidden");
+      });
+    </script>
   </body>
 </html>

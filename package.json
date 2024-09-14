@@ -1,5 +1,5 @@
 {
-  "name": "react-learning",
+  "name": "InsightfulWorld",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -18,6 +18,7 @@
     "mongoose": "^8.4.4",
     "nodemon": "^3.1.4",
     "path": "^0.12.7",
+    "react-toastify": "^10.0.5",
     "uuid": "^10.0.0"
   }
 }

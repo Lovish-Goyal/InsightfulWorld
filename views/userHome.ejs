@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EcoMind</title>
+    <title>InsightfulWorld</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -13,39 +13,42 @@
   <body>
     <header>
       <a href="/"
-        ><div>Eco<span>Mind</span></div>
+        ><div class="nav_text">Insightful&nbsp;<span>World</span></div>
       </a>
-      <h3>SHARE <span>YOUR</span> THOUGHTS <span>GLOBALLY</span></h3>
-      <div class="Navbar-items"></div>
-      <a class="detail-value" href="/profile">
+      <div class="nav_text mid_text">
+        SHARE&nbsp;&nbsp;<span>YOUR</span>&nbsp;&nbsp;THOUGHTS<span
+          >&nbsp;&nbsp;GLOBALLY</span
+        >
+      </div>
+      <a class="profile" href="/profile">
+        <div class="nav_text"><%= username %></div>
         <div class="profile-pic"></div>
       </a>
     </header>
-    <div class="body-entry">
+    <div class="body">
       <div class="col-1">
         <h2>Hey, <%= username %>👋</h2>
-        <h1>Welcome to the EcoMind</h1>
-        <h3>
+        <h1>Welcome to the InsightfulWorld</h1>
+        <div class="subheading">
           Join a vibrant community dedicated to exploring innovative solutions
-          for a sustainable tomorrow. EcoMind is where your thoughts can spark
-          change and inspire others.
-        </h3>
-        <div class="new-note">
-          <form method="post" action="/userHome/saveThought">
-            <h3>Share Your Thought</h3>
-            <textarea
-              name="content"
-              id="textarea"
-              placeholder="Enter Your Thoughts (Max 200 Words)"
-              rows="7"
-              maxlength="200"
-              required
-            ></textarea>
-            <button type="submit">Add your thought</button>
-          </form>
+          for a sustainable tomorrow. InsightfulWorld is where your thoughts can
+          spark change and inspire others.
         </div>
+        <form method="post" action="/userHome/saveThought">
+          <h3>Share Your Thought</h3>
+          <textarea
+            name="content"
+            id="textarea"
+            placeholder="Enter Your Thoughts (Max 200 Words)"
+            rows="10"
+            maxlength="200"
+            required
+          ></textarea>
+          <button type="submit">Add your thought</button>
+        </form>
       </div>
       <div class="col-2">
+        <div class="thoughts_head">Your Thoughts</div>
         <% data.map(item=> { %>
         <div class="item-box">
           <a href="/userHome/deleteThought/<%= item.id%>"

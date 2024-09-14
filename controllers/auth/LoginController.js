@@ -10,7 +10,7 @@ const LoginController = async (req, res) => {
       req.session.targetuser = targetUser;
       res.redirect("/userHome");
     } else {
-      res.send("Email and password do not match.");
+      res.status(401).json({ message: "Email and password do not match." });
     }
   } catch (error) {
     console.log(error);

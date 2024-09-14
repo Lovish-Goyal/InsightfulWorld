@@ -6,6 +6,8 @@ import deleteThoughtController from "../controllers/Thoughts/deleteThoughtContro
 import profiledeleteController from "../controllers/userProfile/profiledeleteController.js";
 import profileEditController from "../controllers/userProfile/profileEditController.js";
 import sessiondeleteController from "../controllers/userProfile/sessiondeleteController.js";
+import ContactController from "../controllers/contact/ContactController.js";
+import UpdateController from "../controllers/auth/updateController.js";
 
 const router = express.Router();
 
@@ -43,6 +45,10 @@ router.get("/", async function (req, res) {
 
 router.use("/", authenticationRouter);
 
+router.post("/contact/post", ContactController);
+
+router.put("/users/:userId", UpdateController);
+
 router.get("/userHome", async function (req, res) {
   const targetuser = req.session.targetuser;
   const userId = targetuser._id;
@@ -54,12 +60,21 @@ router.post("/userHome/saveThought", saveThoughtController);
 
 router.get("/userHome/deleteThought/:id", deleteThoughtController);
 
-router.get("/profile", function (req, res) {
-  const targetuser = req?.session?.targetuser;
+router.get("/profile", async (req, res) => {
+  const targetuser = req.session.targetuser;
+  const userId = targetuser._id;
+  const data = await ThoughtModel.find({ userId: userId });
+
   res.render("profile.ejs", {
     username: targetuser.username,
     email: targetuser.email,
-    id: targetuser._id,
+    id: userId,
+    data: data,
+    mobile: targetuser.mobile || null,
+    about:
+      targetuser.about ||
+      "Hey User, Please Update your About Section yourself.",
+    user_image: targetuser.user_image || null,
   });
 });
 
